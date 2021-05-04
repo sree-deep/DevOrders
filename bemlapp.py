@@ -41,7 +41,7 @@ def get_date(start,gr_pending,po_summary):
             schedules_new=schedules.loc[schedules['HELPER (PO + Material)'] == helper]
             for index1,row1 in schedules_new.iterrows():
                 if paid<row1['Scheduled Qty']: 
-                    gr_pending.loc[index,'Result_date']=row1['Deliv. Date']
+                    gr_pending.loc[index,'Result_date']=str(row1['Deliv. Date'])
                     
                     difference = row1['Scheduled Qty']-paid
                     #addition=stbi[0]-(-1*row['Qty'])
@@ -103,7 +103,7 @@ if file1 is not None and file2 is not None and file3 is not None:
         else:
             old=gr_pending.shape[0]
 
-    gr_pending['Result_date'] = gr_pending['Result_date'].dt.date
+    #gr_pending['Result_date'] = gr_pending['Result_date'].dt.date
 
     st.write(gr_pending)
     if st.button('Download GR PENDING as CSV File'):
